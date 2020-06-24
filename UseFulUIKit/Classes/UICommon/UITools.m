@@ -7,7 +7,6 @@
 //
 
 #import "UITools.h"
-#import "macros.h"
 #import "PodUtil.h"
 @implementation UITools
 static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth,
@@ -558,10 +557,10 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
             return  [[UIImage alloc] initWithContentsOfFile:filePach];
         }else{
             UIImageView *placholder = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
-            placholder.backgroundColor = RGB(240, 240, 240);
+            placholder.backgroundColor = [UIColor lightGrayColor];
             placholder.contentMode = UIViewContentModeCenter;
             //获取pods下组件bundle路径下的图片
-            placholder.image = [UIImage imageNamed:imageName inBundle:[PodUtil bundleForPod:@"MeiShopUIKit"] compatibleWithTraitCollection:nil];
+            placholder.image = [UIImage imageNamed:imageName inBundle:[PodUtil bundleForPod:@"UseFulUIKit"] compatibleWithTraitCollection:nil];
             UIImage *placeHolderImage = [UITools createImageFromView:placholder];
             NSData *imageData = UIImageJPEGRepresentation(placeHolderImage, 0.5);
             [imageData writeToFile:filePach atomically:YES];

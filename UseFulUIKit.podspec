@@ -20,12 +20,12 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
 TODO: Add long description of the pod here.
                        DESC
-
-  s.homepage         = 'https://github.com/silverBullet/UseFulUIKit'
+                       
+  s.homepage         = 'https://github.com/SilverBulletJing/UseFulUIKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'silverBullet' => 'ios_yangyujing@163.com' }
-  s.source           = { :git => 'https://github.com/silverBullet/UseFulUIKit.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/SilverBulletJing/UseFulUIKit.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
@@ -56,6 +56,7 @@ TODO: Add long description of the pod here.
   cc.source_files = 'UseFulUIKit/Classes/UICommon/*'
   cc.frameworks = 'UIKit', 'Foundation'
   cc.dependency 'UseFulUIKit/Nocrash'
+  cc.dependency 'UseFulUIKit/basicDepand'
   end
   
    s.subspec 'UIView+Extension' do |dd|

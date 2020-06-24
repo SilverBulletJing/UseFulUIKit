@@ -7,11 +7,10 @@
 //
 
 #import "TemplateBaseReusableView.h"
-#import "macros.h"
 @implementation TemplateBaseReusableView
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = GMBGColor255;
+        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
