@@ -37,9 +37,9 @@ TODO: Add long description of the pod here.
   }
   
   s.subspec 'baseCells' do |ss|
-  ss.source_files = 'MeiShopUIKit/Classes/baseCells/*'
+  ss.source_files = 'UseFulUIKit/Classes/baseCells/*'
   ss.frameworks = 'UIKit', 'Foundation'
-  ss.dependency 'MeiShopUIKit/UICommon'
+  ss.dependency 'UseFulUIKit/UICommon'
   end
 
   s.subspec 'Nocrash' do |aa|
@@ -55,20 +55,20 @@ TODO: Add long description of the pod here.
   s.subspec 'UICommon' do |cc|
   cc.source_files = 'UseFulUIKit/Classes/UICommon/*'
   cc.frameworks = 'UIKit', 'Foundation'
-  cc.dependency 'MeiShopUIKit/Nocrash'
+  cc.dependency 'UseFulUIKit/Nocrash'
   end
   
    s.subspec 'UIView+Extension' do |dd|
    dd.source_files = 'UseFulUIKit/Classes/UIView+Extension/*'
    dd.frameworks = 'UIKit', 'Foundation', 'CoreText'
    dd.dependency 'YYCategories', '~> 1.0.4'
-   dd.dependency 'MeiShopUIKit/UICommon'
+   dd.dependency 'UseFulUIKit/UICommon'
    end
 
    s.subspec 'MDCycleScrollow' do |ee|
    ee.source_files = 'UseFulUIKit/Classes/MDCycleScrollow/*'
    ee.frameworks = 'UIKit', 'Foundation'
-   ee.dependency 'MeiShopUIKit/UICommon'
+   ee.dependency 'UseFulUIKit/UICommon'
    ee.dependency 'SDWebImage'
    end
 
@@ -85,11 +85,11 @@ TODO: Add long description of the pod here.
    end
 
    s.subspec 'basicDepand' do |hh|
-   hh.source_files = 'UseFulKit/Classes/basicDepand/*'
+   hh.source_files = 'UseFulUIKit/Classes/basicDepand/*'
    hh.frameworks = 'UIKit'
-   hh.dependency 'UseFulKit/UICommon'
-   hh.dependency 'UseFulKit/UIView+Extension'
-
+   hh.dependency 'UseFulUIKit/UICommon'
+   hh.dependency 'UseFulUIKit/UIView+Extension'
+   end
    
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
