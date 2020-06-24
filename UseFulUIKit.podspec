@@ -30,12 +30,67 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'UseFulUIKit/Classes/**/*'
+  s.source_files = 'UseFulUIKit/Classes/UseFulUIKit.h'
   
-  # s.resource_bundles = {
-  #   'UseFulUIKit' => ['UseFulUIKit/Assets/*.png']
-  # }
+  s.resource_bundles = {
+    'UseFulUIKit' => ['UseFulUIKit/Assets/*/*.png']
+  }
+  
+  s.subspec 'baseCells' do |ss|
+  ss.source_files = 'MeiShopUIKit/Classes/baseCells/*'
+  ss.frameworks = 'UIKit', 'Foundation'
+  ss.dependency 'MeiShopUIKit/UICommon'
+  end
 
+  s.subspec 'Nocrash' do |aa|
+  aa.source_files = 'MeiShopUIKit/Classes/Nocrash/*'
+  aa.frameworks = 'UIKit', 'Foundation'
+  end
+  
+  s.subspec 'Toast' do |bb|
+  bb.source_files = 'MeiShopUIKit/Classes/Toast/*'
+  bb.frameworks = 'UIKit', 'Foundation', 'CoreGraphics'
+  end
+
+  s.subspec 'UICommon' do |cc|
+  cc.source_files = 'MeiShopUIKit/Classes/UICommon/*'
+  cc.frameworks = 'UIKit', 'Foundation'
+  cc.dependency 'MeiShopUIKit/Nocrash'
+  end
+  
+   s.subspec 'UIView+Extension' do |dd|
+   dd.source_files = 'MeiShopUIKit/Classes/UIView+Extension/*'
+   dd.frameworks = 'UIKit', 'Foundation', 'CoreText'
+   dd.dependency 'YYCategories', '~> 1.0.4'
+   dd.dependency 'MeiShopUIKit/UICommon'
+   end
+
+   s.subspec 'MDCycleScrollow' do |ee|
+   ee.source_files = 'MeiShopUIKit/Classes/MDCycleScrollow/*'
+   ee.frameworks = 'UIKit', 'Foundation'
+   ee.dependency 'MeiShopUIKit/UICommon'
+   ee.dependency 'SDWebImage'
+   end
+
+
+   s.subspec 'WKWebView' do |ff|
+   ff.source_files = 'MeiShopUIKit/Classes/WKWebView/*'
+   ff.frameworks = 'UIKit', 'Foundation', 'WebKit'
+   ff.dependency 'Masonry'
+   end
+
+   s.subspec 'MDGuidePageView' do |gg|
+   gg.source_files = 'MeiShopUIKit/Classes/MDGuidePageView/*'
+   gg.frameworks = 'UIKit', 'Foundation'
+   end
+
+   s.subspec 'basicDepand' do |hh|
+   hh.source_files = 'UseFulKit/Classes/basicDepand/*'
+   hh.frameworks = 'UIKit'
+   hh.dependency 'UseFulKit/UICommon'
+   hh.dependency 'UseFulKit/UIView+Extension'
+
+   
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
