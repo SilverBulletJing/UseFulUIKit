@@ -1,0 +1,16 @@
+PODS:
+  - UseFulUIKit (0.1.0)
+
+DEPENDENCIES:
+  - UseFulUIKit (from `../`)
+
+EXTERNAL SOURCES:
+  UseFulUIKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  UseFulUIKit: 5be561b1f759b353daec9c81ab74ff2c844d043b
+
+PODFILE CHECKSUM: 6cf52e3ccbcb9f1e33a8f64a310cb247607d223c
+
+COCOAPODS: 1.8.4

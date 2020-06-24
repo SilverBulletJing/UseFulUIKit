@@ -1,0 +1,6 @@
+framework module UseFulUIKit {
+  umbrella header "UseFulUIKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
