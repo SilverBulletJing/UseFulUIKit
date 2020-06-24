@@ -1,8 +1,17 @@
+//
+//  macros.h
+//  GomeShop
+//
+//  Created by ued1 on 2018/6/26.
+//  Copyright © 2018年 mshop. All rights reserved.
+//
+
 #ifndef macros_h
 #define macros_h
 
 /*点击 有回调 */
 typedef void(^ClickBlock)(id objc);
+
 
 
 //适配iOS11的代码
@@ -37,10 +46,7 @@ _Pragma("clang diagnostic pop")\
 #define ScreenW [UIScreen mainScreen].bounds.size.width
 /** 适配比例 */
 #define kWidthRatio ScreenW/375.f
-/** 屏幕的scale */
-#define SreenScale [UIScreen mainScreen].scale
-/**屏幕分辨率 */
-#define ScreenPPI ScreenW*SreenScale*ScreenH*SreenScale
+
 
 /****************************************字体适配*******************************/
 #define AdapterFont(fontSize) ScreenW/375.0*fontSize
@@ -65,6 +71,10 @@ _Pragma("clang diagnostic pop")\
 #define MallImgKey     @"imageName"
 #define MallSelImgKey  @"selectedImageName"
 
+//#define CityId @"CityId"//城市ID
+//#define DistrictId @"DistrictId"//区域ID
+#define Kid @"Kid"//kid的值
+
 
 /*****************  屏幕适配  ******************/
 #define iPhoneX  (ScreenH == 812)
@@ -74,10 +84,10 @@ _Pragma("clang diagnostic pop")\
 #define iphone4 (ScreenH == 480)
 
 /*
-iPhoneX 的分辨率：2436 * 1125 || pt: 812 * 375
-iPhoneXr的分辨率：1792 * 828 || pt: 896 * 414  这个是官网数据  模拟器分辨率为1624 * 750
-iPhoneXs 的分辨率： 2436 * 1125 || pt: 812 * 375
-iPhoneXs Max 的分辨率：2688 * 1242 || pt: 896 * 414
+ iPhoneX 的分辨率：2436 * 1125 || pt: 812 * 375
+ iPhoneXr的分辨率：1792 * 828 || pt: 896 * 414  这个是官网数据  模拟器分辨率为1624 * 750
+ iPhoneXs 的分辨率： 2436 * 1125 || pt: 812 * 375
+ iPhoneXs Max 的分辨率：2688 * 1242 || pt: 896 * 414
  */
 #define isPadDevice ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 //iphonex
@@ -149,6 +159,14 @@ iPhoneXs Max 的分辨率：2688 * 1242 || pt: 896 * 414
 #define APPDELEGATE ((AppDelegate *)[UIApplication sharedApplication].delegate)
 #define KEYWINDOW  [UIApplication sharedApplication].keyWindow
 
+#pragma mark 占位图
+/** 占位图小国美LOGO */
+#define PlaceHolderSmallWithSize(w,h) [UITools PlaceHolderImageWithImage:@"HoldPosition_Small" width:w height:h]
+/** 占位图中国美LOGO */
+#define PlaceHolderMiddleWithSize(w,h) [UITools PlaceHolderImageWithImage:@"HoldPosition_Middle" width:w height:h]
+/** 占位图大国美LOGO */
+#define PlaceHolderLargeWithSize(w,h) [UITools PlaceHolderImageWithImage:@"HoldPosition_Big" width:w height:h]
+
 //获取当前版本号
 #define BUNDLE_VERSION [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
 //获取当前版本的biuld
@@ -162,6 +180,154 @@ iPhoneXs Max 的分辨率：2688 * 1242 || pt: 896 * 414
 
 //图片链接出路
 #define Url(urlStr)  [NSURL URLWithString:urlStr]
+//处理金额显示
+#define ShowPrice(price)  [GMFilterTool handlePrice:price]
+
+//小程序分享路径
+#define MINIProgrameGroupDetail @"pages/multipleVarieties/multipleVarieties"   //组团详情页
+#define MINIProgrameProductDetail @"pages/detail/detail"    //商品详情页
+#define MINIProgrameCouponDetail @"pages/productDetail/productDetail" //领券商品详情
+#define MINIProgrameBrandPage @"pages/brand/index"          //品牌馆
+#define MINIProgrameHotChannel @"pages/brand/index"         //热门频道
+#define MINIProgrameHomePage   @"pages/index/index"         //首页
+#define MINIProgramGetCoupon   @"/pages/getCoupons/getCoupons"  //领券详情页
+#define MINIProgramCouponList  @"/pages/coupons/inlet/index"    //领券列表页
+
+//*****************************************************************
+// MARK: - Getter
+//*****************************************************************
+
+//baseif
+#define ws_if_(name, ...) \
+if (name) { \
+__VA_ARGS__\
+}
+//baseLazy
+#define ws_lazy_(name, ...)\
+if (!_##name) { \
+_##name = ({ \
+__VA_ARGS__\
+}); \
+} \
+return _##name; \
+
+#define getter_view(name, ...) \
+- (UIView *)name { \
+ws_lazy_(name, \
+UIView *obj = [UIView new]; \
+__VA_ARGS__ \
+obj; \
+) \
+}
+
+#define getter_button(name, ...) \
+- (UIButton *)name { \
+ws_lazy_(name, \
+UIButton *obj = [UIButton new]; \
+__VA_ARGS__ \
+obj; \
+) \
+}
+
+#define getter_imageview(name, ...) \
+- (UIImageView *)name { \
+ws_lazy_(name, \
+UIImageView *obj = [UIImageView new]; \
+obj.contentMode = UIViewContentModeScaleAspectFit; \
+obj.layer.masksToBounds = YES; \
+__VA_ARGS__ \
+obj; \
+) \
+}
+
+#define getter_label(name, ...) \
+- (UILabel *)name { \
+ws_lazy_(name, \
+UILabel *obj = [UILabel new]; \
+__VA_ARGS__ \
+obj; \
+) \
+}
+
+#define getter_textfield(name, ...) \
+- (UITextField *)name { \
+ws_lazy_(name, \
+UITextField *obj = [UITextField new]; \
+__VA_ARGS__ \
+obj; \
+) \
+}
+
+#define getter_coll_hor_layout(name, _height, _padding, _inset, _line, _ratio) \
+- (UICollectionViewFlowLayout *)name { \
+CGFloat itemHeight = (_height - _padding * (_line - 1) - (_inset.top + _inset.bottom)) / _line;\
+\
+UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new]; \
+flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal; \
+flowLayout.minimumInteritemSpacing = _padding; \
+flowLayout.minimumLineSpacing = _padding; \
+flowLayout.sectionInset = _inset; \
+flowLayout.itemSize = CGSizeMake((itemHeight / (_ratio)), itemHeight); \
+\
+return flowLayout; \
+}
+
+#define getter_collection(name, layout, ...) \
+- (UICollectionView *)name { \
+ws_lazy_(name, \
+UICollectionView *obj = [[UICollectionView alloc] initWithFrame:(CGRect){CGPointZero,CGSizeZero} collectionViewLayout:layout? : [UICollectionViewLayout new]]; \
+__VA_ARGS__ \
+obj; \
+) \
+}
+
+
+#define getter_textview(name, ...) \
+- (UITextView *)name { \
+ws_lazy_(name, \
+UITextView *obj = [UITextView new]; \
+__VA_ARGS__ \
+obj; \
+) \
+}
+
+#define getter_table(name, ...) \
+- (UITableView *)name \
+{ \
+ws_lazy_(name, \
+UITableView *obj = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]; \
+__VA_ARGS__ \
+obj; \
+) \
+}
+
+#define getter_group_table(name, ...) \
+- (UITableView *)name { \
+ws_lazy_(name, \
+UITableView *obj = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped]; \
+__VA_ARGS__ \
+obj; \
+) \
+}
+
+#define getter_custom(class, name, ...) \
+- (class *)name \
+{ \
+ws_lazy_(name, \
+class *obj = [[class alloc] init]; \
+__VA_ARGS__ \
+obj ; \
+)\
+}
+
+#define getter_layer(name, ... ) \
+- (CAShapeLayer *)name { \
+ws_lazy_(name, \
+CAShapeLayer *obj = [CAShapeLayer layer]; \
+__VA_ARGS__ \
+obj ; \
+)\
+}
 
 
 

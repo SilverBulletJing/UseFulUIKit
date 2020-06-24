@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'UseFulUIKit'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'A short description of UseFulUIKit.'
 
 # This description is used to generate tags and improve search results.
@@ -56,7 +56,6 @@ TODO: Add long description of the pod here.
   cc.source_files = 'UseFulUIKit/Classes/UICommon/*'
   cc.frameworks = 'UIKit', 'Foundation'
   cc.dependency 'UseFulUIKit/Nocrash'
-  cc.dependency 'UseFulUIKit/basicDepand'
   end
   
    s.subspec 'UIView+Extension' do |dd|

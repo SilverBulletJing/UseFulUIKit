@@ -27,6 +27,7 @@
 #import "Toast.h"
 #import "GMDateFormatter.h"
 #import "GMFilterTool.h"
+#import "macros.h"
 #import "PodUtil.h"
 #import "UICommon.h"
 #import "UITools.h"
@@ -48,7 +49,6 @@
 #import "BDBaseController.h"
 #import "BDHideNavBaseController.h"
 #import "BDNavigationController.h"
-#import "macros.h"
 
 FOUNDATION_EXPORT double UseFulUIKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char UseFulUIKitVersionString[];
